@@ -6,7 +6,7 @@
        http://spring.vilderlee.com/schema/user http://com.vilderlee.com/schema/user/user.xsd
 ">
 
-
+    <user:registry host="zookeeper://localhost:2181"></user:registry>
 
     <user:service id="helloService" interface="com.study.HelloService" ref="helloServiceImpl"></user:service>
 

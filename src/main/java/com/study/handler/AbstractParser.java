@@ -1,5 +1,6 @@
 package com.study.handler;
 
+import com.study.config.ServiceConfig;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.support.RootBeanDefinition;
 import org.springframework.beans.factory.xml.BeanDefinitionParser;
@@ -18,17 +19,34 @@ import org.w3c.dom.Element;
  * </pre>
  */
 public abstract class AbstractParser implements BeanDefinitionParser {
-    @Override
-    public BeanDefinition parse(Element element, ParserContext parserContext) {
-        BeanDefinition beanDefinition = new RootBeanDefinition();
+
+    private Class clz;
+
+    public AbstractParser(Class clz) {
+        this.clz = clz;
+    }
+
+    @Override public BeanDefinition parse(Element element, ParserContext parserContext) {
+        RootBeanDefinition beanDefinition = new RootBeanDefinition();
 
         String id = element.getAttribute("id");
-        if (StringUtils.isEmpty(id)){
+        if (StringUtils.isEmpty(id)) {
+            String name = element.getAttribute("name");
 
+            if (StringUtils.isEmpty(name)) {
+                //可能是service类，获取接口
+                name = element.getAttribute("interface");
+                if (StringUtils.isEmpty(name)) {
+                    name = clz.getName();
+                }
+            }
+            id = name;
         }
+        beanDefinition.setBeanClass(clz);
+        beanDefinition.setLazyInit(false);
 
         doParser(element, beanDefinition);
-        parserContext.getRegistry().registerBeanDefinition(id,beanDefinition);
+        parserContext.getRegistry().registerBeanDefinition(id, beanDefinition);
         return beanDefinition;
     }
 

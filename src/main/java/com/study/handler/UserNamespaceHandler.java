@@ -1,5 +1,7 @@
 package com.study.handler;
 
+import com.study.config.RegistryConfig;
+import com.study.config.ServiceConfig;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**
@@ -15,6 +17,7 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 public class UserNamespaceHandler extends NamespaceHandlerSupport {
     @Override
     public void init() {
-        registerBeanDefinitionParser("service", new ServiceBeanParser());
+        registerBeanDefinitionParser("registry", new RegistryBeanParser(RegistryConfig.class));
+        registerBeanDefinitionParser("service", new ServiceBeanParser(ServiceConfig.class));
     }
 }

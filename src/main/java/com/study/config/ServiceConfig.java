@@ -1,5 +1,7 @@
 package com.study.config;
 
+import java.util.List;
+
 /**
  * 类说明:
  *
@@ -26,6 +28,27 @@ public class ServiceConfig<T> {
     private T ref;
 
     private String id;
+
+    /**
+     * 是否暴露服务
+     */
+    private transient volatile boolean exported;
+
+    /**
+     * 采用dubbo原生代码里的配置（这里为什么是多个RegistryConfig 因为其可能有多种配置中心）
+     */
+    protected List<RegistryConfig> registries;
+
+
+
+    public synchronized  void doExportUrl(){
+        if (exported){
+            return;
+        }
+        //防止服务重复暴露
+        exported = true;
+
+    }
 
 
     public String getInterfaceName() {
@@ -56,15 +79,32 @@ public class ServiceConfig<T> {
         this.id = id;
     }
 
+    /**
+     * 这里interface是关键字，所以没有全局变量，只有get、set方法
+     *
+     * @return
+     */
+
     public String getInterface(){
         return interfaceName;
     }
-
 
     public void setInterface(String interfaceName){
         this.interfaceName = interfaceName;
         if (id == null || id.length() == 0) {
             id = interfaceName;
         }
+    }
+
+    public Class getInterfaceClass() {
+        return interfaceClass;
+    }
+
+    public List<RegistryConfig> getRegistries() {
+        return registries;
+    }
+
+    public void setRegistries(List<RegistryConfig> registries) {
+        this.registries = registries;
     }
 }

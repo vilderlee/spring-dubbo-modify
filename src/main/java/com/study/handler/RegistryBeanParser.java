@@ -1,9 +1,7 @@
 package com.study.handler;
 
 import org.springframework.beans.factory.config.BeanDefinition;
-import org.springframework.beans.factory.support.RootBeanDefinition;
-import org.springframework.beans.factory.xml.BeanDefinitionParser;
-import org.springframework.beans.factory.xml.ParserContext;
+import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
 /**
@@ -16,15 +14,18 @@ import org.w3c.dom.Element;
  * VilderLee    2019/6/28      Create this file
  * </pre>
  */
-public class RegistryBeanParser implements BeanDefinitionParser {
+public class RegistryBeanParser extends AbstractParser {
 
-    @Override public BeanDefinition parse(Element element, ParserContext parserContext) {
+    public RegistryBeanParser(Class clz) {
+        super(clz);
+    }
 
-
-        String id = element.getAttribute("id");
-
-
-
-        return null;
+    @Override protected void doParser(Element element, BeanDefinition beanDefinition) {
+        String host = element.getAttribute("host");
+        if (!StringUtils.isEmpty(host)) {
+            beanDefinition.getPropertyValues().addPropertyValue("host", host);
+        }else {
+            throw new RuntimeException("Registry host is Empty !");
+        }
     }
 }

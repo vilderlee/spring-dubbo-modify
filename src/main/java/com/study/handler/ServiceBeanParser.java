@@ -18,25 +18,18 @@ import org.w3c.dom.Element;
  * VilderLee    2019/6/28      Create this file
  * </pre>
  */
-public class ServiceBeanParser implements BeanDefinitionParser {
+public class ServiceBeanParser extends AbstractParser {
 
+    public ServiceBeanParser(Class clz) {
+        super(clz);
+    }
 
-    @Override public BeanDefinition parse(Element element, ParserContext parserContext) {
-        RootBeanDefinition beanDefinition = new RootBeanDefinition();
-
-        String id = element.getAttribute("id");
+    @Override protected void doParser(Element element, BeanDefinition beanDefinition) {
         String interfaceClass = element.getAttribute("interface");
         String ref = element.getAttribute("ref");
-        beanDefinition.setBeanClass(ServiceConfig.class);
-        beanDefinition.setLazyInit(false);
-
-        beanDefinition.getPropertyValues().addPropertyValue("id", id);
         beanDefinition.getPropertyValues().addPropertyValue("interface", interfaceClass);
+        //ref封装成RuntimeBeanReference原因是spring容器在解析依赖注入的属性时，
+        //如果是RuntimeBeanReference会去判断spring是否存在ref的这个bean
         beanDefinition.getPropertyValues().addPropertyValue("ref", new RuntimeBeanReference(ref));
-
-        //beanName
-        parserContext.getRegistry().registerBeanDefinition(id,beanDefinition);
-
-        return beanDefinition;
     }
 }

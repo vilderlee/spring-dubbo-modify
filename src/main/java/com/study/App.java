@@ -15,5 +15,6 @@ public class App
 
         context.getBeanDefinitionNames();
 
+        ((ClassPathXmlApplicationContext) context).start();
     }
 }
