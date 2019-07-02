@@ -48,8 +48,16 @@ public class ServiceConfig<T> {
         //防止服务重复暴露
         exported = true;
 
+        //暴露服务
+        export();
     }
 
+    private void export() {
+        //使用netty做通讯方式
+
+
+        //使用zk做注册中心
+    }
 
     public String getInterfaceName() {
         return interfaceName;

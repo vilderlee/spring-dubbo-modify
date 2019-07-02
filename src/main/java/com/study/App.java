@@ -1,7 +1,7 @@
 package com.study;
 
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.study.transport.Server;
+import com.study.transport.ServiceLoader;
 
 /**
  * Hello world!
@@ -9,12 +9,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App 
 {
-    public static void main( String[] args )
-    {
-        ApplicationContext context = new ClassPathXmlApplicationContext("classpath:/META-INF/user.xml");
+    public static void main( String[] args ) throws Exception {
+        ServiceLoader<Server> serviceLoaderTest = ServiceLoader.load(Server.class);
+        Server server = serviceLoaderTest.getExtension("netty");
+        server.connect();
 
-        context.getBeanDefinitionNames();
-
-        ((ClassPathXmlApplicationContext) context).start();
     }
 }
