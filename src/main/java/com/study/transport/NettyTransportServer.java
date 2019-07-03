@@ -1,5 +1,7 @@
 package com.study.transport;
 
+import com.study.url.SimpleDubboURL;
+
 /**
  * 类说明:
  *
@@ -12,16 +14,11 @@ package com.study.transport;
  */
 public class NettyTransportServer implements Server{
 
-
-    private void aVoid(){
+    @Override public void connect(SimpleDubboURL simpleDubboURL) throws Exception {
 
     }
 
-    @Override public void connect() throws Exception {
-        System.out.println("123213123");
-    }
-
-    @Override public void close() throws Exception {
+    @Override public void close(SimpleDubboURL simpleDubboURL) throws Exception {
 
     }
 }

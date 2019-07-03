@@ -1,6 +1,7 @@
 package com.study.transport;
 
 import com.study.annotation.SPI;
+import com.study.url.SimpleDubboURL;
 
 /**
  * 类说明:
@@ -15,7 +16,7 @@ import com.study.annotation.SPI;
 @SPI("netty")
 public interface Server {
 
-    void connect() throws Exception;
+    void connect(SimpleDubboURL simpleDubboURL) throws Exception;
 
-    void close() throws Exception;
+    void close(SimpleDubboURL simpleDubboURL) throws Exception;
 }

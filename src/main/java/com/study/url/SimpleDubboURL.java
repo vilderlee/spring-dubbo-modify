@@ -1,10 +1,11 @@
 package com.study.url;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
  * 类说明:
- *
+ *  registry://192.168.1.7:9090/com.alibaba.service1?param1=value1&amp;param2=value2
  * <pre>
  * Modify Information:
  * Author        Date          Description
@@ -12,8 +13,9 @@ import java.util.Map;
  * VilderLee    2019/7/2      Create this file
  * </pre>
  */
-public class SimpleDubboURL {
+public class SimpleDubboURL implements Serializable {
 
+    private static final long serialVersionUID = 8542785340880264437L;
     private final String protocol;
 
     private final String username;
@@ -26,14 +28,22 @@ public class SimpleDubboURL {
 
     private final String path;
 
-    private final Map<String, String> parameters;
+    private final Map<String, Object> parameters;
 
-    public SimpleDubboURL(String protocol, Map<String, String> parameters) {
+    public SimpleDubboURL(String protocol, String host, int port) {
+        this(protocol, null, null, host, port, null, (Map<String, Object>) null);
+    }
+
+    public SimpleDubboURL(String protocol, String host, int port, Map<String, Object> parameters) {
+        this(protocol, null, null, host, port, null, parameters);
+    }
+
+    public SimpleDubboURL(String protocol, Map<String, Object> parameters) {
         this(protocol, null, null, null, 0, null, parameters);
     }
 
     public SimpleDubboURL(String protocol, String username, String password, String host, int port, String path,
-            Map<String, String> parameters) {
+            Map<String, Object> parameters) {
         this.protocol = protocol;
         this.username = username;
         this.password = password;
@@ -67,7 +77,7 @@ public class SimpleDubboURL {
         return path;
     }
 
-    public Map<String, String> getParameters() {
+    public Map<String, Object> getParameters() {
         return parameters;
     }
 }
