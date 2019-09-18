@@ -2,8 +2,8 @@
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
             xmlns:beans="http://www.springframework.org/schema/beans"
             xmlns:tool="http://www.springframework.org/schema/tool"
-            xmlns="http://spring.vilderlee.com/schema/user"
-            targetNamespace="http://spring.vilderlee.com/schema/user">
+            xmlns="http://spring.vilderlee.com/schema/dubbo"
+            targetNamespace="http://spring.vilderlee.com/schema/dubbo">
 
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:import namespace="http://www.springframework.org/schema/beans"/>

@@ -14,7 +14,7 @@ import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
  * VilderLee    2019/6/28      Create this file
  * </pre>
  */
-public class UserNamespaceHandler extends NamespaceHandlerSupport {
+public class DubboNamespaceHandler extends NamespaceHandlerSupport {
     @Override
     public void init() {
         registerBeanDefinitionParser("registry", new RegistryBeanParser(RegistryConfig.class));

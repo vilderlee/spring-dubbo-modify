@@ -1,5 +1,8 @@
 package com.study.config;
 
+import com.study.transport.Server;
+import com.study.transport.ServiceLoader;
+
 import java.util.List;
 
 /**
@@ -39,10 +42,10 @@ public class ServiceConfig<T> {
      */
     protected List<RegistryConfig> registries;
 
+    private final Server server = (Server) ServiceLoader.load(Server.class).getAdaptive();
 
-
-    public synchronized  void doExportUrl(){
-        if (exported){
+    private synchronized void doExportUrl() {
+        if (exported) {
             return;
         }
         //防止服务重复暴露
@@ -52,9 +55,8 @@ public class ServiceConfig<T> {
         export();
     }
 
-    private void export() {
+    private synchronized void export() {
         //使用netty做通讯方式
-
 
         //使用zk做注册中心
     }
@@ -93,11 +95,11 @@ public class ServiceConfig<T> {
      * @return
      */
 
-    public String getInterface(){
+    public String getInterface() {
         return interfaceName;
     }
 
-    public void setInterface(String interfaceName){
+    public void setInterface(String interfaceName) {
         this.interfaceName = interfaceName;
         if (id == null || id.length() == 0) {
             id = interfaceName;

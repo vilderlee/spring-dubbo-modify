@@ -12,7 +12,5 @@ public class App
     public static void main( String[] args ) throws Exception {
         ServiceLoader<Server> serviceLoaderTest = ServiceLoader.load(Server.class);
         Server server = serviceLoaderTest.getExtension("netty");
-        server.connect();
-
     }
 }

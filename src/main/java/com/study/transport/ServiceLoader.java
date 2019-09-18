@@ -45,17 +45,23 @@ public class ServiceLoader<S> {
         }
     }
 
-    public static <S> ServiceLoader load(Class<S> clz) throws Exception {
-        //必须是接口
-        if (!clz.isInterface()) {
-            throw new Exception("extension is not interface");
+    public static <S> ServiceLoader load(Class<S> clz) {
+        try {
+            //必须是接口
+            if (!clz.isInterface()) {
+                throw new Exception("extension is not interface");
+            }
+            //必须由SPI注解注释
+            if (!clz.isAnnotationPresent(SPI.class)) {
+                throw new Exception("extension is not extension without @" + SPI.class.getName());
+            }
+            ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+            return load(clz, classLoader);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        //必须由SPI注解注释
-        if (!clz.isAnnotationPresent(SPI.class)) {
-            throw new Exception("extension is not extension without @" + SPI.class.getName());
-        }
-        ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        return load(clz, classLoader);
+
+        return null;
     }
 
     private static <S> ServiceLoader load(Class<S> clz, ClassLoader classLoader) throws Exception {
@@ -69,9 +75,13 @@ public class ServiceLoader<S> {
         return serviceLoader;
     }
 
-    public S getExtension(String name) throws Exception {
+    public S getExtension(String name) {
         if (StringUtils.isEmpty(name)) {
-            throw new Exception("name is null");
+            try {
+                throw new Exception("name is null");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         Holder holder = CONTAINER.get(name);
@@ -99,7 +109,7 @@ public class ServiceLoader<S> {
         if (null == clz) {
             createContainer();
         }
-            clz = CONTAINER_CLASS.get(name);
+        clz = CONTAINER_CLASS.get(name);
         try {
             return clz.newInstance();
         } catch (Exception e) {
@@ -107,7 +117,6 @@ public class ServiceLoader<S> {
         }
         return null;
     }
-
 
     //创建容器
     private void createContainer() {
@@ -129,7 +138,6 @@ public class ServiceLoader<S> {
         //解析文件
         parse();
     }
-
 
     //找到文件，依次解析
     private void parse() {
@@ -183,14 +191,14 @@ public class ServiceLoader<S> {
 
     /**
      * dubbo原生是通过字节码技术生成一个名称为<接口名称$Adaptive>的实现类，这个类会去判断实际的URL参数的对应的参数值，从而获取对应的插件
-     * <p>
+     * <p>k
      * 我这里并不打算使用这种方式去做，因为我做不来（简易版就不要那么高要求了！）
      * <p>
      * 直接使用SPI注解的值作为参数值
      *
      * @return
      */
-    public S getAdaptive() throws Exception {
+    public S getAdaptive(){
         createContainer();
         return getExtension(cachedDefaultName);
     }
