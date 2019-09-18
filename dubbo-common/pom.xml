@@ -5,14 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.study</groupId>
-    <artifactId>spring-xsd</artifactId>
-    <packaging>pom</packaging>
+    <artifactId>dubbo-common</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <modules>
-        <module>dubbo-common</module>
-    </modules>
 
-    <name>spring-xsd</name>
+    <name>dubbo-common</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -23,31 +19,34 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.1.2.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>4.0.35.Final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.8</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
-
-        <resources>
-            <resource>
-                <directory>dubbo-springboot/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.tld</include>
-                    <include>**</include>
-                </includes>
-                <filtering>false</filtering><!--这里是false，用true会报 数据库连接 错误-->
-            </resource>
-            <resource>
-                <directory>src/main/java</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                    <include>**/*.tld</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
         <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
