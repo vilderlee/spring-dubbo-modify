@@ -1,4 +1,4 @@
-package com.study.dubbospringboot;
+package com.dubbo.dubbospringboot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
