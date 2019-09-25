@@ -1,4 +1,4 @@
-package com.study;
+package com.dubbo;
 
 /**
  * 类说明:
@@ -10,9 +10,6 @@ package com.study;
  * VilderLee    2019/6/28      Create this file
  * </pre>
  */
-public class HelloServiceImpl implements HelloService{
-
-    @Override public String say() {
-        return "Hello World";
-    }
+public interface HelloService {
+    String say();
 }

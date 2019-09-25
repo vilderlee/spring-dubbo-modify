@@ -1,0 +1,2 @@
+netty=com.dubbo.transport.NettyTransportServer
+socket=com.dubbo.transport.SocketTransportServer

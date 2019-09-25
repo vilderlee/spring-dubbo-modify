@@ -1,7 +1,7 @@
-package com.study.config;
+package com.dubbo.config;
 
-import com.study.transport.Server;
-import com.study.transport.ServiceLoader;
+import com.dubbo.transport.Server;
+import com.dubbo.transport.ServiceLoader;
 
 import java.util.List;
 
@@ -44,7 +44,7 @@ public class ServiceConfig<T> {
 
     private final Server server = (Server) ServiceLoader.load(Server.class).getAdaptive();
 
-    private synchronized void doExportUrl() {
+    protected synchronized void doExportUrl() {
         if (exported) {
             return;
         }

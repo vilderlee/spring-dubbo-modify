@@ -1,1 +1,1 @@
-http\://spring.vilderlee.com/schema/dubbo=com.study.handler.DubboNamespaceHandler
+http\://spring.vilderlee.com/schema/dubbo=com.dubbo.handler.DubboNamespaceHandler

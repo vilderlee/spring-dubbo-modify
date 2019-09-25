@@ -1,4 +1,4 @@
-package com.study.url;
+package com.dubbo.url;
 
 import java.io.Serializable;
 import java.util.Map;

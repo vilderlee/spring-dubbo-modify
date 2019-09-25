@@ -1,6 +1,6 @@
-package com.study.transport;
+package com.dubbo.transport;
 
-import com.study.annotation.SPI;
+import com.dubbo.annotation.SPI;
 import org.springframework.util.StringUtils;
 
 import java.io.BufferedInputStream;

@@ -1,7 +1,7 @@
-package com.study.handler;
+package com.dubbo.handler;
 
-import com.study.config.RegistryConfig;
-import com.study.config.ServiceConfig;
+import com.dubbo.config.RegistryConfig;
+import com.dubbo.config.ServiceConfig;
 import org.springframework.beans.factory.xml.NamespaceHandlerSupport;
 
 /**

@@ -1,6 +1,6 @@
-package com.study.transport;
+package com.dubbo.transport;
 
-import com.study.url.SimpleDubboURL;
+import com.dubbo.url.SimpleDubboURL;
 
 import java.io.InputStream;
 import java.io.ObjectInputStream;

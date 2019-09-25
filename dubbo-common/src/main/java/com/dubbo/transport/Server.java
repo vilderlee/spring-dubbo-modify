@@ -1,7 +1,7 @@
-package com.study.transport;
+package com.dubbo.transport;
 
-import com.study.annotation.SPI;
-import com.study.url.SimpleDubboURL;
+import com.dubbo.annotation.SPI;
+import com.dubbo.url.SimpleDubboURL;
 
 /**
  * 类说明:

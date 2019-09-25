@@ -10,7 +10,7 @@
 
     <dubbo:registry host="zookeeper://localhost:2181"></dubbo:registry>
 
-    <dubbo:service id="helloService" interface="com.study.HelloService" ref="helloServiceImpl"></dubbo:service>
+    <dubbo:service id="helloService" interface="com.dubbo.HelloService" ref="helloServiceImpl"></dubbo:service>
 
-    <bean id="helloServiceImpl" class="com.study.HelloServiceImpl"></bean>
+    <bean id="helloServiceImpl" class="com.dubbo.HelloServiceImpl"></bean>
 </beans>

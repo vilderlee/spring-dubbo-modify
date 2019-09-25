@@ -1,4 +1,4 @@
-package com.study.config;
+package com.dubbo.config;
 
 /**
  * 类说明:

@@ -1,4 +1,4 @@
-package com.study.transport;
+package com.dubbo.transport;
 
 import lombok.Data;
 import lombok.ToString;

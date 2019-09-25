@@ -1,4 +1,4 @@
-package com.study.handler;
+package com.dubbo.handler;
 
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.beans.factory.config.RuntimeBeanReference;
