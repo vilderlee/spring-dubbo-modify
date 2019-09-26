@@ -9,11 +9,13 @@ import com.dubbo.dubbospringboot.annotation.Service;
  * Modify Information:
  * Author        Date          Description
  * ============ ============= ============================
- * VilderLee    2019/9/25      Create this file
+ * VilderLee    2019/6/28      Create this file
  * </pre>
  */
+@Service
+public class HelloServiceImpl implements HelloService{
 
-public class TestService {
-
-
+    @Override public String say() {
+        return "Hello World";
+    }
 }

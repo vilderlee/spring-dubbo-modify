@@ -4,8 +4,11 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanClassLoaderAware;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.beans.factory.config.BeanDefinitionHolder;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
 import org.springframework.context.EnvironmentAware;
+import org.springframework.context.annotation.AnnotationConfigUtils;
 import org.springframework.context.annotation.ClassPathBeanDefinitionScanner;
 import org.springframework.core.env.Environment;
 import org.springframework.core.io.ResourceLoader;
@@ -27,41 +30,21 @@ import java.util.Set;
  * VilderLee    2019/9/25      Create this file
  * </pre>
  */
-public class DubboClassPathBeanDefinitionScanner implements EnvironmentAware, BeanClassLoaderAware, BeanFactoryAware {
+public class DubboClassPathBeanDefinitionScanner extends ClassPathBeanDefinitionScanner {
 
-    private final Set<String> packages;
-
-    private Environment environment;
-
-    private ClassLoader classLoader;
-
-    private BeanFactory beanFactory;
-
-    public DubboClassPathBeanDefinitionScanner(String...packages){
-        this(Arrays.asList(packages));
+    public DubboClassPathBeanDefinitionScanner(BeanDefinitionRegistry registry, boolean useDefaultFilters) {
+        super(registry, useDefaultFilters);
     }
 
-    public DubboClassPathBeanDefinitionScanner(Collection<String> packages) {
-        this(new LinkedHashSet<String>(packages));
+    @Override
+    public Set<BeanDefinitionHolder> doScan(String... basePackages) {
+        return super.doScan(basePackages);
     }
 
-    public DubboClassPathBeanDefinitionScanner(Set<String> packages) {
-        this.packages = packages;
+    @Override
+    public boolean checkCandidate(String beanName, BeanDefinition beanDefinition) throws IllegalStateException {
+        return super.checkCandidate(beanName, beanDefinition);
     }
 
-    public void scan(){
 
-    }
-
-    @Override public void setBeanClassLoader(ClassLoader classLoader) {
-        this.classLoader = classLoader;
-    }
-
-    @Override public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        this.beanFactory = beanFactory;
-    }
-
-    @Override public void setEnvironment(Environment environment) {
-        this.environment = environment;
-    }
 }

@@ -1,7 +1,5 @@
 package com.dubbo.dubbospringboot.dubbo;
 
-import com.dubbo.dubbospringboot.annotation.Service;
-
 /**
  * 类说明:
  *
@@ -9,11 +7,9 @@ import com.dubbo.dubbospringboot.annotation.Service;
  * Modify Information:
  * Author        Date          Description
  * ============ ============= ============================
- * VilderLee    2019/9/25      Create this file
+ * VilderLee    2019/6/28      Create this file
  * </pre>
  */
-
-public class TestService {
-
-
+public interface HelloService {
+    String say();
 }
